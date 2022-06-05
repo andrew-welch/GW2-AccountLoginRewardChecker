@@ -10,7 +10,7 @@ Function Get-AccountLaurels {
     # Initialise
     $SearchResults = @()
     $totalLaurels = [Int] 0
-    $ItemArray = Import-Csv .\item-data.csv
+    $ItemArray = Import-Csv .\laurels\item-data.csv
 
     #Validate API String
     if ($apikey -notmatch "([0-z]){8}-(([0-z]){4}-){3}([0-z]){20}-(([0-z]){4}-){3}([0-z]){12}") {
@@ -72,7 +72,20 @@ Function Get-AccountLaurels {
             $SearchResults += $itemfind
         }
 
+        # Is this character or account? Subtract toal bag space from total items in the bags.
+
+        #total bag space 
+        # ($Result_Inventory.bags.size | measure-object -sum).sum
+
+        # Bags filled slots 
+        # ($Result_Inventory.Bags[0].inventory | Where-Object {$_ -ne $null}).count
+
+
+
     }
+
+
+
 
     #Add unclaimed Laurels from items to total
     Foreach ($item in $Searchresults) {
